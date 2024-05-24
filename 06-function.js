@@ -5,14 +5,13 @@ function sum(a, b) {
 
 console.log(sum(1, 2));
 
-const resul = function(a, b) {
-    console.log("a, b:", typeof a, typeof b);
+const sumFunc = function(a, b) {
     return a + b;
 }
 
-console.log(resul(2, 3), typeof resul, typeof resul());
+console.log(sumFunc(2, 3), typeof sumFunc, typeof sumFunc());
 
-console.log(resul(), resul(2), resul(2, 3), resul(2, 3, 7));
+console.log(sumFunc(), sumFunc(2), sumFunc(2, 3), sumFunc(2, 3, 7));
 
 
 console.log("=======================");
@@ -31,7 +30,7 @@ function getRealNumTotal() {
     console.log("arg:", arguments);
     let res = 0;
     for (let i = 0; i < arguments.length; i++) {
-        if (typeof arguments[i] === "num ber")
+        if (typeof arguments[i] === "number")
             res += arguments[i];
     }
     return res;
@@ -43,14 +42,24 @@ console.log(f1_arrow());
 const f2_arrow = name => "hello " + name;
 console.log(f2_arrow('world'));
 
+console.log("=======================");
+
+function sandBox(val1, val2, func) {
+    if (typeof func == "function")
+            func(val1, val2);
+}
+sandBox(3, 4, function(v1, v2) {
+    console.log(v1 + v2);
+});
+
 
 
 
 // cf -------------------------------------------
 // function getNum() {
-//     console.log("arg:", arguments);
-//     let res = 0;
-//     for (node in arguments) {
+    //     console.log("arg:", arguments);
+    //     let res = 0;
+    //     for (node in arguments) {
 //         res += node;
 //     }
 //     return res;
