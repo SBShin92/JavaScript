@@ -30,3 +30,56 @@ const sources = ["소금", "고춧가루", "새우젓"];
 console.log(veges, sources);
 console.log(veges.concat(sources)); // 배열 합치기
 console.log(veges.concat(sources).join(", ")); // 문자열로 변환
+
+console.log("============= Stack? =================");
+let fruits = [];
+console.log(fruits.push("Apple"), fruits);
+console.log(fruits.push("Banana"), fruits);
+console.log(fruits.push("Carrot"), fruits);
+
+console.log(fruits.pop(), fruits);
+console.log(fruits.pop(), fruits);
+console.log(fruits.pop(), fruits);
+
+console.log("============= Queue? =================");
+console.log(fruits.push("Apple"), fruits);
+console.log(fruits.push("Banana"), fruits);
+console.log(fruits.push("Carrot"), fruits);
+
+console.log(fruits.shift(), fruits);
+console.log(fruits.shift(), fruits);
+console.log(fruits.shift(), fruits);
+
+console.log("============= Splice =================");
+fruits = ["Banana", "Orange", "Apple", "Mango"];
+console.log(fruits.splice(1));
+console.log(fruits);
+
+console.log("============= Slice =================");
+fruits = ["Banana", "Orange", "Apple", "Mango"];
+let slices = fruits.slice(1);
+console.log("fruits:", fruits);
+console.log("slices:", slices);
+
+
+console.log("============= reverse =================");
+fruits = ["Banana", "Orange", "Apple", "Mango"];
+console.log(fruits);
+fruits.reverse();
+console.log(fruits);
+
+console.log("============= sort =================");
+fruits = ["Banana", "Orange", "Apple", "Mango"];
+console.log(fruits);
+fruits.sort();
+console.log(fruits);
+fruits.sort((a, b) => {
+   return b.localeCompare(a);
+});
+console.log(fruits);
+
+fruits.sort((a, b) => {
+    return a.length > b.length ? 1 : -1; 
+})
+
+console.log(fruits);
