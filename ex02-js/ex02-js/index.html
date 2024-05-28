@@ -1,32 +1,48 @@
 <!DOCTYPE html>
 <html lang="ko">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <h1>Welcome</h1>
 
     <h3>window 객체</h3>
     <ul>
-        <li><a href="#" target="_blank" rel="noopener noreferrer">새 창 열기</a></li>
-        <li id="close-window">열린 창 닫기</li>
+      <li>
+        <a href="javascript:openGoogleWindow();">새 창으로 example.com 열기</a>
+      </li>
+      <li><a href="javascript:closeWindow();">열린 창 닫기</a></li>
+      <li>
+        <a href="javascript:openNewWindow();">새 창 열기</a>
+      </li>
+      <li>
+        <a href="javascript:closeThisWindow();">현재 이 창 닫기</a>
+      </li>
 
-        <li>지금 브라우저의 크기는?</li>
+      <li>지금 브라우저의 크기는?</li>
     </ul>
-</body>
-<script>
-    alert("Welcome!");
-    let c = confirm("hi?");
-    let name;
-    if (c == true) {
-        name = prompt("input name");
+  </body>
+  <script>
+    function openGoogleWindow() {
+      newWin = window.open(
+        "https://example.com",
+        "_blank",
+        "width=800, height=600, left=100, top=100"
+      );
     }
-    console.log(name); 
-    console.log(screen.pixelDepth);
-</script>
+    function openNewWindow() {
+      newWin = window.open("#", "_blank");
+    }
+    function closeWindow() {
+      if (newWin !== undefined) newWin.close();
+    }
+    function closeThisWindow () {
+        window.close();
+    }
+  </script>
+  <!-- <script src="script/ask.js"></script> -->
 </html>
