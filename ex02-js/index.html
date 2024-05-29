@@ -16,14 +16,15 @@
         <a href="javascript:openGoogleWindow();">새 창으로 example.com 열기</a>
       </li>
       <li><a href="javascript:closeWindow();">열린 창 닫기</a></li>
+      <br />
       <li>
         <a href="javascript:openNewWindow();">새 창 열기</a>
       </li>
       <li>
         <a href="javascript:closeThisWindow();">현재 이 창 닫기</a>
       </li>
-
-      <li>지금 브라우저의 크기는?</li>
+      <br />
+      <li><a href="javascript:printInner();">지금 브라우저의 크기는?</a></li>
     </ul>
   </body>
   <script>
@@ -40,8 +41,13 @@
     function closeWindow() {
       if (newWin !== undefined) newWin.close();
     }
-    function closeThisWindow () {
-        window.close();
+    function closeThisWindow() {
+      window.close();
+    }
+
+    function printInner() {
+      let message = `window size: ${window.innerWidth}x${window.innerHeight}`;
+      alert(message);
     }
   </script>
   <!-- <script src="script/ask.js"></script> -->
