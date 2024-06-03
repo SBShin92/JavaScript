@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jq-ajax</title>
+    <style>
+      .poster-img {
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="btnCallSnippet">HTML 조각 불러오기</button><br />
+    <button id="btnCallMovies">영화 목록 가져오기</button><br />
+
+    <div id="type-this"></div>
+    <div id="snippetVal"></div>
+    <div id="moviesVal">
+      <table id="list"></table>
+    </div>
+
+    <script src="script/jquery-3.7.1.js"></script>
+    <script>
+      $("button#btnCallSnippet").on("click", (evt) => {
+        $.ajax({
+          url: "./snippet.html",
+          type: "GET",
+          //   data: "msg=" + $("#snip").val(),
+          dataType: "html",
+          success: (result) => {
+            $("#type-this").html(result);
+          },
+          error: (request, status, error) => {
+            console.error(error);
+          },
+        });
+      });
+
+      $("button#btnCallMovies").on("click", (evt) => {
+        $.ajax({
+          url: "https://api.sampleapis.com/movies/animation",
+          type: "GET",
+          //   data: "msg=" + $("#snip").val(),
+          dataType: "json",
+          success: (result) => {
+            $(result).each((i, e) => {
+              // let id = $("<td>").append($(e).attr("id"));
+              // let title = $("<td>").append($(e).attr("title"));
+              // let posterToImg = $("<img>").attr("src", $(e).attr("posterURL")).css("width", "50%");
+              // let poster = $("<td>").append(posterToImg);
+              // let mktr = $("<tr>").append(id).append(title).append(poster);
+
+              // $("#moviesVal #list").append(mktr);
+              // $("#moviesVal #list").append(
+              //   $("<tr>")
+              //     .append(
+              //       $("<td>").append(
+              //         $("<img>")
+              //           .attr("src", $(e).attr("posterURL"))
+              //           .css("width", "100px")
+              //       )
+              //     )
+              //     .append($("<td>").append($(e).attr("id")))
+              //     .append($("<td>").append($(e).attr("title")))
+              // );
+
+              $("#moviesVal #list").append(
+                $(`<tr>
+                    <td><img class="poster-img" src="${$(e).attr(
+                      "posterURL"
+                    )}"></td>}
+                    <td class="movieId">${$(e).attr("id")}</td>
+                    <td>${$(e).attr("title")}</td>
+                  </tr>`)
+              );
+              $("tr").on("click", (evt) => {
+
+                window.open(`https://www.imdb.com/title/${$(e).attr("imdbId")}`, "_blank");
+              });
+            });
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
