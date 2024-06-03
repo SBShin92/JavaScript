@@ -58,14 +58,14 @@
         // });
 
         // =========== async await ==========
-        // try {
-        //   const response = await fetch("snippet.html");
-        //   const value = await response.text();
-        //   $("#type-this").html(value);
+        try {
+          const response = await fetch("snippet.html");
+          const value = await response.text();
+          $("#type-this").html(value);
 
-        // } catch (reason) {
-        //   console.error(reason);
-        // }
+        } catch (reason) {
+          console.error(reason);
+        }
       };
 
       const handleMoviesClick = (evt) => {
