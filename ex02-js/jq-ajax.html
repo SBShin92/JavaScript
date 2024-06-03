@@ -23,6 +23,7 @@
     <script src="script/jquery-3.7.1.js"></script>
     <script>
       const handleSnippetClick = async (evt) => {
+        // =========== ajax options ==========
         // $.ajax({
         //   url: "snippet.html",
         //   type: "GET",
@@ -35,25 +36,36 @@
         //   },
         // });
 
-          // fetch("snippet.html")
-          // .then(response => {
-          //   console.log(response);
-          //   return response.text();
-          // })
-          // .then(data => {
-          //   $("#type-this").html(data);
-          // })
-          // .catch(reason => {
-          //   console.error(reason);
-          // });
-            try {
-              const response = await fetch("snippet.html");
-              const value = await response.text();
-              $("#type-this").html(value);
+        // =========== ajax done, fail ==========
+        // $.ajax("snippet.html")
+        //   .done((data) => {
+        //     console.log(data);
+        //     $("#type-this").html(data);
+        //   })
+        //   .fail((jqXHR, status, error) => console.error(status, error));
 
-            } catch (reason) {
-              console.error(reason);
-            }
+        // =========== fetch chain ==========
+        // fetch("snippet.html")
+        // .then(response => {
+        //   console.log(response);
+        //   return response.text();
+        // })
+        // .then(data => {
+        //   $("#type-this").html(data);
+        // })
+        // .catch(reason => {
+        //   console.error(reason);
+        // });
+
+        // =========== async await ==========
+        // try {
+        //   const response = await fetch("snippet.html");
+        //   const value = await response.text();
+        //   $("#type-this").html(value);
+
+        // } catch (reason) {
+        //   console.error(reason);
+        // }
       };
 
       const handleMoviesClick = (evt) => {
@@ -64,10 +76,10 @@
         //   success: (result) => renderMovies(result),
         // });
 
-          fetch("https://api.sampleapis.com/movies/animation")
-          .then(response => response.json())
+        fetch("https://api.sampleapis.com/movies/animation")
+          .then((response) => response.json())
           .then(renderMovies)
-          .catch(reason => console.error(reason));
+          .catch((reason) => console.error(reason));
       };
 
       const renderMovies = (movies) => {
