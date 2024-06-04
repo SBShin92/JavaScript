@@ -51,24 +51,26 @@
 
             if (inputTheme.value) {
                 localStorage.setItem("theme", inputTheme.value);
+                document.body.style.backgroundColor = inputTheme.value;
                 inputTheme.value = "";
             }
             if (inputFontSize.value) {
                 localStorage.setItem("fontSize", inputFontSize.value);
+                document.body.style.fontSize = inputFontSize.value;
                 inputFontSize.value = "";
             }
         }
         const readLocalStorage = () => {
             const theme = localStorage.getItem("theme");
             const fontSize = localStorage.getItem("fontSize");
-            document.body.style.backgroundColor = theme;
-            document.body.style.fontSize = fontSize;
+            document.getElementById("localStorageResult").innerText = `Theme: ${theme}, Font-Size: ${fontSize}`;
         }
         const deleteLocalStorage = () => {
             localStorage.removeItem("theme");
             localStorage.removeItem("fontSize");
             document.body.style.backgroundColor = "";
             document.body.style.fontSize = "";
+            document.getElementById("localStorageResult").innerText = "";
         }
 
         document.getElementById("saveLocalStorage").addEventListener("click", setLocalStorage);
