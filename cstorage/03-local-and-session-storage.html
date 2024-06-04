@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SessionStorage and LocalStorage Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        input,
+        button {
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>SessionStorage, LocalStorage Example</h1>
+
+    <h2>LocalStorage - User Settings</h2>
+    <label for="theme">Theme:</label>
+    <input type="text" id="theme" placeholder="e.g., dark">
+    <label for="fontSize">Font Size:</label>
+    <input type="text" id="fontSize" placeholder="e.g., medium">
+    <br />
+    <button id="saveLocalStorage">Save Settings</button>
+    <button id="readLocalStorage">Read Settings</button>
+    <button id="deleteLocalStorage">Delete Settings</button>
+    <div id="localStorageResult"></div>
+
+    <h2>SessionStorage - User Information</h2>
+    <label for="username">Username:</label>
+    <input type="text" id="username" placeholder="e.g., Alice">
+    <label for="email">Email:</label>
+    <input type="text" id="email" placeholder="e.g., alice@example.com">
+    <br />
+    <button id="saveSessionStorage">Save User Info</button>
+    <button id="readSessionStorage">Read User Info</button>
+    <button id="deleteSessionStorage">Delete User Info</button>
+    <div id="sessionStorageResult"></div>
+
+    <script>
+        // LocalStorage Handlers - User Settings
+        const setLocalStorage = () => {
+            const inputTheme = document.getElementById("theme");
+            const inputFontSize = document.getElementById("fontSize");
+
+            if (inputTheme.value) {
+                localStorage.setItem("theme", inputTheme.value);
+                inputTheme.value = "";
+            }
+            if (inputFontSize.value) {
+                localStorage.setItem("fontSize", inputFontSize.value);
+                inputFontSize.value = "";
+            }
+        }
+        const readLocalStorage = () => {
+            const theme = localStorage.getItem("theme");
+            const fontSize = localStorage.getItem("fontSize");
+            document.body.style.backgroundColor = theme;
+            document.body.style.fontSize = fontSize;
+        }
+        const deleteLocalStorage = () => {
+            localStorage.removeItem("theme");
+            localStorage.removeItem("fontSize");
+            document.body.style.backgroundColor = "";
+            document.body.style.fontSize = "";
+        }
+
+        document.getElementById("saveLocalStorage").addEventListener("click", setLocalStorage);
+        document.getElementById("readLocalStorage").addEventListener("click", readLocalStorage);
+        document.getElementById("deleteLocalStorage").addEventListener("click", deleteLocalStorage);
+
+        // SessionStorage Handlers - User Information
+        const setSessionStorage = () => {
+            const inputUsername = document.getElementById("username");
+            const inputEmail = document.getElementById("email");
+
+            if (inputUsername.value && inputEmail.value) {
+                sessionStorage.setItem("username", inputUsername.value);
+                sessionStorage.setItem("email", inputEmail.value);
+                inputUsername.value = "";
+                inputEmail.value = "";
+            }
+        }
+        const readSessionStorage = () => {
+            const username = sessionStorage.getItem("username");
+            const email = sessionStorage.getItem("email");
+            document.getElementById("sessionStorageResult").innerText = `username: ${username}\nE-mail: ${email}`;
+        }
+        const deleteSessionStorage = () => {
+            sessionStorage.removeItem("username");
+            sessionStorage.removeItem("email");
+            document.getElementById("sessionStorageResult").innerText = "";
+        }
+
+        document.getElementById("saveSessionStorage").addEventListener("click", setSessionStorage);
+        document.getElementById("readSessionStorage").addEventListener("click", readSessionStorage);
+        document.getElementById("deleteSessionStorage").addEventListener("click", deleteSessionStorage);
+
+    </script>
+</body>
+
+</html>
