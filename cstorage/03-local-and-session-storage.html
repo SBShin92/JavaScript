@@ -88,8 +88,8 @@
                 sessionStorage.setItem("email", inputEmail.value);
                 inputUsername.value = "";
                 inputEmail.value = "";
-                document.getElementById("sessionStorageResult").innerText = "";
             }
+            document.getElementById("sessionStorageResult").innerText = "";
         }
         const readSessionStorage = () => {
             const username = sessionStorage.getItem("username");
