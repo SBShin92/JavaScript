@@ -59,6 +59,7 @@
                 document.body.style.fontSize = inputFontSize.value;
                 inputFontSize.value = "";
             }
+            document.getElementById("localStorageResult").innerText = "";
         }
         const readLocalStorage = () => {
             const theme = localStorage.getItem("theme");
@@ -87,6 +88,7 @@
                 sessionStorage.setItem("email", inputEmail.value);
                 inputUsername.value = "";
                 inputEmail.value = "";
+                document.getElementById("sessionStorageResult").innerText = "";
             }
         }
         const readSessionStorage = () => {
