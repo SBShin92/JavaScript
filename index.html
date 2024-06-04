@@ -6,21 +6,26 @@
     <title>idx</title>
 </head>
 <body>
-    <!-- <a href="ex02-js/jq-ajax.html">영화목록</a> -->
-
     <script>
+        async function fetchFiles(path) {
+            const response = await fetch(`https://api.github.com/repos/SBShin92/JavaScript/contents/${path}`);
+            const data = await response.json();
+            let htmlString = '';
+            
+            for (let file of data) {
+                if (file.type === 'dir') {
+                    htmlString += `<li><strong>${file.name}</strong></li><ul>${await fetchFiles(file.path)}</ul>`;
+                } else if (file.name.endsWith('.html')) {
+                    htmlString += `<li><a href="${file.path}">${file.name}</a></li>`;
+                }
+            }
+            return htmlString;
+        }
+
         (async () => {
-          const response = await fetch('https://api.github.com/repos/SBShin92/Javascript/contents/');
-          const data = await response.json();
-          let htmlString = '<ul>';
-          
-          for (let file of data) {
-            htmlString += `<li><a href="${file.path}">${file.name}</a></li>`;
-          }
-  
-          htmlString += '</ul>';
-          document.getElementsByTagName('body')[0].innerHTML = htmlString;
+            const htmlString = await fetchFiles('');
+            document.getElementsByTagName('body')[0].innerHTML = `<ul>${htmlString}</ul>`;
         })()
-      </script>
+    </script>
 </body>
 </html>
